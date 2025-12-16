@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritual - Guide</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon (1).ico">
+    <style>
+        :root {
+    /* Текст и фон */
+    --bg-dark: #050713;          /* общий фон страницы */
+    --bg-card: #0b0f21;          /* карточки поверх фона */
+    --text-primary: #f5f1e8;     /* мягкий тёплый белый */
+    --text-secondary: #b5b0a5;   /* приглушённый серо-бежевый */
+    --border: #272b3f;
+
+    /* Акценты */
+    --primary: #f5c76a;          /* тёплый "свет свечи" для кнопок и заголовков */
+    --primary-dark: #c59a45;
+    --primary-light: #ffe2a3;
+
+    --accent: #7c5cff;           /* холодный фиолетовый акцент под фон */
+    --accent-light: #9d8bff;
+    --success: #5bb98a;
+
+    --gradient-1: linear-gradient(135deg, #f5c76a, #7c5cff);
+    --gradient-2: linear-gradient(135deg, #7c5cff, #f5c76a);
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            background-image: url('images/fon.png');
+    background-size: cover;        /* картинка растягивается на весь экран */
+    background-position: center;   /* центрируем фон */
+    background-attachment: fixed;  /* лёгкий эффект параллакса при скролле */
+}
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #000000;          /* тот же тёмный цвет, что и hero/section */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #000000;
+    z-index: 1000;
+    padding: 20px 0;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* три колонки одинаковой ширины */
+.header-left,
+.header-center,
+.header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* текст Ritual слева */
+.header-left {
+    justify-content: flex-start;
+}
+
+.brand-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;        /* убираем линию */
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0) 0%,
+        rgba(180,180,180,0.7) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    transform: skewX(-20deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.brand-text:hover::after {
+    opacity: 1;
+    animation: brandShimmer 0.6s forwards;
+}
+
+@keyframes brandShimmer {
+    from { left: -120%; }
+    to   { left: 120%; }
+}
+
+
+/* лого по центру */
+.header-center {
+    justify-content: center;
+}
+
+.header-logo {
+    height: 32px;      /* уменьшаешь/увеличиваешь по вкусу */
+    width: auto;
+    display: block;
+}
+
+/* навигация справа */
+.header-right {
+    justify-content: flex-end;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+.footer {
+    margin-top: 60px;
+    padding: 24px 32px;
+    border-top: 1px solid #272b3f;
+}
+.footer-columns {
+    display: flex;                 /* две колонки в строку */
+    justify-content: space-between;/* левая и правая по краям */
+    gap: 40px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+.footer-columns {
+    display: flex;
+    justify-content: space-between; /* левая и правая по краям */
+    gap: 40px;
+}
+
+.social-btn img {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.footer-item {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.footer-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer-icon-link img {
+    width: 40px;      /* подгони размер под дизайн */
+    height: 40px;
+    display: block;
+}
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: var(--primary);
+}
+
+
+        nav a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 3px;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        /* Hero */
+       .hero {
+    padding: 60px 0;
+    text-align: center;
+    background: #080b18;              /* плотный тёмный блок */
+    border-radius: 24px;
+    margin-bottom: 80px;
+    border: 1px solid #272b3f;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+
+
+        .hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #ffffff;              /* просто белый текст */
+}
+
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+    display: inline-block;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #ffffff, #e5e5ff); /* мягкий светлый градиент */
+    color: #111217;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+       .cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.7) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    transform: skewX(-20deg);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+.cta-button:hover::after {
+    opacity: 1;
+    animation: shimmer 0.7s forwards;
+}
+
+@keyframes shimmer {
+    from { left: -120%; }
+    to   { left: 120%; }
+}
+
+        /* Sections */
+        .section {
+    margin-bottom: 100px;
+    background: #050713;              /* фон под контент */
+    border-radius: 24px;
+    padding: 40px 32px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+    border: 1px solid #272b3f;
+}
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Roles Grid */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .role-card,
+.info-box,
+.art-item,
+.asset-card {
+    background: #0b0f21;
+    border: 1px solid #323652;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+}
+
+
+        .role-card:hover {
+            border-color: #000000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .role-badge.ambassador {
+            background: #000000;
+            color: #fff;
+        }
+
+        .role-badge.developer {
+            background: #2a2a2a;
+            color: #fff;
+        }
+
+        .role-badge.researcher {
+            background: #404040;
+            color: #fff;
+        }
+
+        .role-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .role-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .role-requirements {
+            font-size: 12px;
+            color: var(--text-secondary);
+            background: #f0f0f0;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        /* Project Info */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .info-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            border-left: 4px solid #ffffff;
+        }
+
+        .info-box h4 {
+            color: #ffffff;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .info-box p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .features-list li {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .features-list li::before {
+            content: '→';
+            color: #000000;
+            font-weight: bold;
+        }
+
+        /* Asset Section */
+        .asset-showcase {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .asset-card,
+.role-requirements {
+    background-color: #101425;
+}
+
+        .asset-icon {
+            font-size: 48px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.12));
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .asset-info {
+            text-align: left;
+            flex: 1;
+        }
+
+        .asset-info h4 {
+            color: #000000;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .asset-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Art Section */
+        .art-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .art-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .art-item:hover {
+            border-color: #000000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .art-preview {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.08));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .art-info {
+            padding: 16px;
+        }
+
+        .art-info h4 {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .art-info p {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            margin-top: 100px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .asset-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .asset-info {
+                text-align: center;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        img { max-width: 100%; height: auto; }
+
+        /* Мобильная навигация */
+.header-hamburger{
+  display:none;
+  flex-direction:column;
+  gap:4px;
+  background:transparent;
+  border:0;
+  cursor:pointer;
+  color:#2d7cff;            /* СИНИЙ цвет бургера */
+}
+
+.header-hamburger span{
+  width:25px;
+  height:3px;
+  background: currentColor; /* полоски берут цвет из кнопки */
+}
+
+@media (max-width:768px){
+  .header-hamburger{display:flex;}
+}
+
+@media (max-width: 768px) {
+  .header-hamburger { display: flex; }
+  nav { 
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: var(--bg-card);
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+  nav.active { display: flex; }
+  .header-content { padding: 10px 20px; }
+  main { margin-top: 70px !important; }
+}
+
+.header-hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+  background: transparent;
+  border: 0;
+}
+.header-hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #ffffff; /* или var(--text-primary) */
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .header-hamburger { display: flex; }
+
+  nav {
+    position: fixed;
+    top: 70px;      /* под высоту шапки */
+    left: 0;
+    width: 100%;
+    background: #fff; /* или var(--bg-card) */
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    display: none;
+    border-top: 1px solid #e0e0e0;
+  }
+  nav.active { display: flex; }
+}
+@media (max-width: 768px) {
+  .container { padding: 0 15px; max-width: 100%; }
+
+  /* все гриды в одну колонку */
+  .roles-grid, .info-grid, .art-gallery {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* все “две колонки” во flex — в столбик */
+  .about-content, .footer-columns {
+    flex-direction: column !important;
+    gap: 20px;
+  }
+
+  /* карточки где слева иконка справа текст */
+  .asset-card {
+    flex-direction: column !important;
+    text-align: center;
+    gap: 16px;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+    <div class="container">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="index.html" class="brand-text">Ritual</a>
+            </div>
+
+            <div class="header-center">
+                <img src="images/logo.gif" alt="Ritual logo" class="header-logo">
+            </div>
+            
+
+            <div class="header-right">
+                <button class="header-hamburger" type="button" onclick="toggleNav()">
+  <span></span><span></span><span></span>
+</button>
+
+    <nav>
+        <a href="index.html" class="nav-link">Roles</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="assets.html" class="nav-link">Assets</a>
+        <a href="art.html" class="nav-link">Art</a>
+    </nav>
+</div>
+</header>
+
+
+
+<main class="container">
+    <!-- Hero -->
+    <section class="hero">
+        <h1>About Ritual</h1>
+        <p>A simple explanation of what Ritual is, why it exists, and how it works.</p>
+        <a href="https://discord.com/invite/ritual-net" target="_blank" class="cta-button">
+        Join Discord
+    </a>
+    </section>
+
+    <!-- What is Ritual -->
+    <section id="what" class="section">
+        <h2 class="section-title" style="display: flex; align-items: center; gap: 16px;">
+    What is Ritual?
+    <img src="images/stik4.png" alt="Siggy sticker" style="height:100px; width:auto;">
+</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>AI + Blockchain = the next step</h3>
+                  <p>
+    Ritual connects artificial intelligence (AI) with blockchain.
+  </p>
+
+  <p>
+    <strong>Before (regular AI, like ChatGPT):</strong><br>
+    Imagine you have a robot judge. It sits in a locked room in the office of one big company.
+    You send it a question, it thinks, and makes a decision. But you can't see how it thinks.
+    The company could secretly program it to rule in its own favor.
+  </p>
+
+  <p>
+    <strong>Now (with Ritual):</strong><br>
+    Ritual takes this robot judge out of the locked room and places it in a huge public square,
+    surrounded by thousands of independent observers (computers all over the world).
+  </p>
+
+  <p>
+    <strong>The Essence of Ritual's Activity:</strong><br>
+    They are building a public and verifiable "brain network" for the blockchain. Any application
+    (finance, gaming, social media) can ask the AI a question and get an answer you can be 100% confident in,
+    because it is overseen by thousands of independent participants, and the result is recorded in a
+    transparent digital ledger for all to see.
+  </p>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px;">
+                <p><strong>How it works with an example:</strong></p>
+  <p>
+    <strong>1. Question:</strong> Should we give this customer a discount?
+  </p>
+  <p>
+    <strong>2. Process:</strong> Your question is received not by one robot in a secret room,
+    but by that very "robot in the square." Thousands of computers in the Ritual network
+    jointly run its algorithms to compute the answer.
+  </p>
+  <p>
+    <strong>3. Result:</strong> They arrive at a single answer, for example, "Yes, a 10% discount."
+  </p>
+  <p>
+    <strong>4. The Key Part:</strong> Each computer records this conclusion on the blockchain
+    (like in a public, tamper-proof digital ledger). Now no one can hide or change this decision.
+    Everyone sees that the robot said "10%," and knows that no one forced it to lie.
+  </p>
+</div>
+        </div>
+    </section>
+
+    <!-- Problems -->
+    <section class="section">
+        <h2 class="section-title" style="display: flex; align-items: center; gap: 16px;">
+    Problems Ritual solves
+    <img src="images/stik1.png" alt="Siggy sticker" style="height:100px; width:auto;">
+</h2>
+
+    Problems Ritual solves
+</h2>
+
+        <div class="info-grid">
+            <div class="info-box">
+                <h4>❌ Centralized AI</h4>
+                <p>Today, AI like ChatGPT or Midjourney is controlled by single companies, which can censor, turn off access, or change rules at any time.</p>
+            </div>
+            <div class="info-box">
+                <h4>❌ No way to verify results</h4>
+                <p>You cannot easily check if an AI answer was changed or if it is really coming from the model you trust.</p>
+            </div>
+            <div class="info-box">
+                <h4>❌ Expensive, limited compute</h4>
+                <p>Most blockchains cannot handle heavy AI workloads directly, so developers are forced to use centralized APIs.</p>
+            </div>
+            <div class="info-box">
+                <h4>❌ Weak privacy</h4>
+                <p>When you send data to AI, the provider often sees and stores it. Sensitive data is hard to protect.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages -->
+    <section class="section">
+        <h2 class="section-title" style="display: flex; align-items: center; gap: 16px;">
+    Why Ritual is powerful
+    <img src="images/stik2.png" alt="Siggy sticker" style="height:100px; width:auto;">
+</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+            <div class="role-card">
+                <h3>🔒 Decentralized by design</h3>
+                <p style="color: var(--text-secondary);">The network runs on many independent nodes worldwide, not one company’s server.</p>
+            </div>
+            <div class="role-card">
+                <h3>✅ Verifiable AI outputs</h3>
+                <p style="color: var(--text-secondary);">You can cryptographically verify that an AI result is correct and was not tampered with.</p>
+            </div>
+            <div class="role-card">
+                <h3>⚡ Built for on-chain AI</h3>
+                <p style="color: var(--text-secondary);">Ritual is optimized so AI can plug into smart contracts with low friction.</p>
+            </div>
+            <div class="role-card">
+                <h3>🛡️ Better privacy</h3>
+                <p style="color: var(--text-secondary);">Advanced cryptography helps keep your data hidden while still proving the result is valid.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies -->
+    <section class="section">
+        <h2 class="section-title">Technologies in simple words</h2>
+        <div class="roles-grid">
+            <div class="role-card">
+                <h3>Infernet</h3>
+                <p style="color: var(--text-secondary);">
+                    A network that connects AI models (like ChatGPT or open-source models) to blockchains. 
+                    It lets smart contracts call AI and get results back safely on many EVM chains.
+                </p>
+            </div>
+            <div class="role-card">
+                <h3>Ritual Chain</h3>
+                <p style="color: var(--text-secondary);">
+                    A new blockchain designed specifically for AI workloads. It aims to make AI-native apps faster, cheaper, and more flexible.
+                </p>
+            </div>
+            <div class="role-card">
+                <h3>ZK Proofs (Zero-Knowledge)</h3>
+                <p style="color: var(--text-secondary);">
+                    A way to prove something is true without revealing the details. 
+                    For example, proving an AI followed the correct steps without showing your private data.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facts -->
+    <section class="section">
+        <h2 class="section-title" style="display: flex; align-items: center; gap: 16px;">
+    Project facts
+    <img src="images/stik3.png" alt="Siggy sticker" style="height:100px; width:auto;">
+</h2>
+        <div class="info-grid">
+            <div class="info-box">
+                <h4>💰 Funding</h4>
+                <p><strong>$25M+</strong><br>Series A led by Archetype with Polychain, Accomplice, Robot Ventures and others.</p>
+            </div>
+            <div class="info-box">
+                <h4>👥 Community</h4>
+                <p><strong>109,813+</strong><br>Discord members as of 14.12.2025</p>
+            </div>
+            <div class="info-box">
+                <h4>📍 Founded</h4>
+                <p><strong>Since 2023</strong><br>With core team based in New York.</p>
+            </div>
+            <div class="info-box">
+                <h4>🏆 Focus</h4>
+                <p>Bringing AI on-chain in a decentralized, verifiable and privacy-preserving way.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+
+    <!-- Footer -->
+  <footer class="footer">
+  <div class="footer-columns">
+    <!-- левая колонка -->
+    <div class="footer-column">
+      <div class="footer-item">Official Ritual</div>
+
+      <a href="https://ritual.net" target="_blank" class="footer-item footer-link">
+        Ritual
+      </a>
+
+      <a href="https://x.com/ritualnet" target="_blank" class="footer-icon-link">
+        <img src="images/x.png" alt="Ritual X">
+      </a>
+      <a href="https://discord.com/invite/ritual-net" target="_blank" class="footer-icon-link">
+        <img src="images/ds.png" alt="Ritual Discord">
+      </a>
+      <a href="https://github.com/ritual-net" target="_blank" class="footer-icon-link">
+        <img src="images/git.png" alt="Ritual GitHub">
+      </a>
+    </div>
+
+    <!-- центр -->
+    <div class="footer-center">
+      © 2025 Quick Ritual Guide
+    </div>
+
+    <!-- правая колонка -->
+    <div class="footer-column">
+      <div class="footer-item">Autor Quick Ritual Guide</div>
+      <div class="footer-item">Discord: @tripppin666</div>
+
+      <a href="https://x.com/Maxim_Ilyano" target="_blank" class="footer-icon-link">
+        <img src="images/x.png" alt="Maxim on X">
+      </a>
+    </div>
+  </div>
+</footer>
+
+    <script>
+        // Smooth navigation
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+
+
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        
+
+        // Smooth scroll initialization
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+        
+
+ function toggleNav() {
+    const nav = document.querySelector("nav");
+    const btn = document.querySelector(".header-hamburger");
+    const isOpen = nav.classList.toggle("active");
+    btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  }
+
+  // закрывать меню при клике по ссылке
+  document.querySelectorAll("nav a").forEach(a => {
+    a.addEventListener("click", () => {
+      document.querySelector("nav").classList.remove("active");
+      document.querySelector(".header-hamburger")?.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // закрывать при клике вне меню
+  document.addEventListener("click", (e) => {
+    const nav = document.querySelector("nav");
+    const btn = document.querySelector(".header-hamburger");
+    if (!nav || !btn) return;
+    if (!nav.classList.contains("active")) return;
+    if (nav.contains(e.target) || btn.contains(e.target)) return;
+    nav.classList.remove("active");
+    btn.setAttribute("aria-expanded", "false");
+  });
+
+
+    </script>
+</body>
+</html>

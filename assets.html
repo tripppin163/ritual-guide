@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritual - Guide</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon (1).ico">
+    <style>
+        :root {
+            --primary: #000000;
+            --primary-dark: #1a1a1a;
+            --primary-light: #333333;
+            --bg-dark: #ffffff;
+            --bg-card: #f8f8f8;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --border: #e0e0e0;
+            --accent: #1a1a1a;
+            --accent-light: #404040;
+            --success: #2d2d2d;
+            --gradient-1: linear-gradient(135deg, #000000, #404040);
+            --gradient-2: linear-gradient(135deg, #404040, #000000);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            background-image: url('images/fon.jpg');
+    background-size: cover;        /* картинка растягивается на весь экран */
+    background-position: center;   /* центрируем фон */
+    background-attachment: fixed;  /* лёгкий эффект параллакса при скролле */
+}
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+.footer {
+    margin-top: 60px;
+    padding: 24px 32px;
+    border-top: 1px solid #272b3f;
+}
+.footer-columns {
+    display: flex;                 /* две колонки в строку */
+    justify-content: space-between;/* левая и правая по краям */
+    gap: 40px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+.footer-columns {
+    display: flex;
+    justify-content: space-between; /* левая и правая по краям */
+    gap: 40px;
+}
+
+.social-btn img {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.footer-item {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.footer-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer-icon-link img {
+    width: 40px;      /* подгони размер под дизайн */
+    height: 40px;
+    display: block;
+}
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 3px;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.05) 100%);
+            border-radius: 20px;
+            margin-bottom: 80px;
+            border: 1px solid #e0e0e0;
+        }
+
+        
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--gradient-1);
+            color: #666666;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            color: #333333;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Roles Grid */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .role-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .role-card:hover {
+            border-color: #000000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .role-badge.ambassador {
+            background: #000000;
+            color: #fff;
+        }
+
+        .role-badge.developer {
+            background: #2a2a2a;
+            color: #fff;
+        }
+
+        .role-badge.researcher {
+            background: #404040;
+            color: #fff;
+        }
+
+        .role-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .role-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .role-requirements {
+            font-size: 12px;
+            color: var(--text-secondary);
+            background: #f0f0f0;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        /* Project Info */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .info-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            border-left: 4px solid #000000;
+        }
+
+        .info-box h4 {
+            color: #000000;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .info-box p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .features-list li {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .features-list li::before {
+            content: '→';
+            color: #000000;
+            font-weight: bold;
+        }
+
+        /* Asset Section */
+        .asset-showcase {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .asset-card {
+            background: #f8f8f8;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .asset-icon {
+            font-size: 48px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.12));
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .asset-info {
+            text-align: left;
+            flex: 1;
+        }
+
+        .asset-info h4 {
+            color: #000000;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .asset-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Art Section */
+        .art-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .art-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .art-item:hover {
+            border-color: #000000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .art-preview {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.08));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .art-info {
+            padding: 16px;
+        }
+
+        .art-info h4 {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+.resource-card {
+  background: #0d101f;
+  border-radius: 12px;
+  padding: 20px 24px;
+  border: 1px solid #272b3f;
+  margin-bottom: 16px;
+}
+.resource-card h3 {
+  margin: 0 0 8px;
+  color: var(--text-primary);
+}
+.resource-card p {
+  margin: 0 0 12px;
+  color: var(--text-secondary);
+}
+.link-arrow {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+        .art-info p {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            margin-top: 100px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .asset-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .asset-info {
+                text-align: center;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Мобильная навигация */
+.header-hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+.header-hamburger span {
+  width: 25px;
+  height: 3px;
+  background: var(--text-primary);
+  transition: 0.3s;
+}
+@media (max-width: 768px) {
+  .header-hamburger { display: flex; }
+  nav { 
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: var(--bg-card);
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+  nav.active { display: flex; }
+  .header-content { padding: 10px 20px; }
+  main { margin-top: 70px !important; }
+}
+
+
+
+img { max-width: 100%; height: auto; }
+
+.header-hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+  background: transparent;
+  border: 0;
+}
+.header-hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #ffffff; /* или var(--text-primary) */
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .header-hamburger { display: flex; }
+
+  nav {
+    position: fixed;
+    top: 70px;      /* под высоту шапки */
+    left: 0;
+    width: 100%;
+    background: #fff; /* или var(--bg-card) */
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+    display: none;
+    border-top: 1px solid #e0e0e0;
+  }
+  nav.active { display: flex; }
+}
+@media (max-width: 768px) {
+  .container { padding: 0 15px; max-width: 100%; }
+
+  /* все гриды в одну колонку */
+  .roles-grid, .info-grid, .art-gallery {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* все “две колонки” во flex — в столбик */
+  .about-content, .footer-columns {
+    flex-direction: column !important;
+    gap: 20px;
+  }
+
+  /* карточки где слева иконка справа текст */
+  .asset-card {
+    flex-direction: column !important;
+    text-align: center;
+    gap: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: 24px !important; }
+  .section-title { font-size: 18px !important; }
+  .cta-button { padding: 12px 24px; font-size: 14px; }
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">✦ RITUAL</div>
+                <nav>
+                    <a href="index.html" class="nav-link">Roles</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="assets.html" class="nav-link">Assets</a>
+                    <a href="art.html" class="nav-link">Art</a>
+                </nav>
+            </div>
+        </div>
+        </div>
+    </header>
+
+<main class="container">
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Ritual Assets</h1>
+        <p>Key places where you can be active, contribute, and grow together with the Ritual community.</p>
+    </section>
+    <section class="section">
+  <h2 class="section-title" style="display: flex; align-items: center; gap: 16px;">
+    Active
+    <img src="images/stik5.png" alt="Siggy sticker" style="height:100px; width:auto;">
+</h2>
+  <div class="info-box">
+    <h4>Creating posts and content</h4>
+    <p>
+      Your posts should be high-quality and original. We welcome content created with care,
+      creativity, and attention to detail. Posts that are clearly generated by AI in a few
+      seconds without any real improvement or personal touch will be treated as spam and may
+      be removed. Please respect the time and attention of the community.
+    </p>
+
+    <h4 style="margin-top: 20px;">Chat participation</h4>
+    <p>
+      The chat is a space for meaningful, live conversation. Mindless spam, flooding, and
+      one-word messages are not encouraged. We value:
+    </p>
+    <ul>
+      <li>Discussing any topics in a respectful way, from everyday life to professional themes (nodes, tech, art).</li>
+      <li>Helping newcomers by answering questions and sharing your experience.</li>
+      <li>Supporting others: reacting to their work on X (Twitter), giving feedback, and sharing advice.</li>
+      <li>Creating helpful resources, such as short guides that answer common questions from newcomers.</li>
+    </ul>
+    <p>
+      Moderators actively monitor what happens in chat. Thoughtful, constructive activity
+      will not go unnoticed. Contributing in a smart and respectful way is the best way to
+      make a name for yourself and become a valuable member of the community.
+    </p>
+    <p>
+      Remember: our goal is to build a strong, friendly, and growing community where every
+      meaningful contribution matters. Let’s build it together.
+    </p>
+  </div>
+</section>
+
+
+    <!-- X & Cura Activity -->
+    <section id="assets" class="section">
+         <h2 class="section-title" style="display: flex; align-items: center; gap: 16px;">
+    Be active on X and Cura
+    <img src="images/stik6.png" alt="Siggy sticker" style="height:100px; width:auto;">
+</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 24px; max-width: 720px;">
+            Be active on X and Cura: post content, create art (for ideas check the <strong>updates</strong> channel), 
+            join Discord chats in the <strong>community</strong> section, help newcomers — and success will be inevitable, buddy!
+        </p>
+        <p style="color: var(--text-secondary); margin-bottom: 16px; max-width: 720px;">
+    Also, when you post on X, don’t forget to tag 
+    <a href="https://x.com/ritualfnd" target="_blank" style="color: var(--primary); text-decoration: none;">@ritualfnd</a>. 
+    If you want more visibility for your work, you can kindly ask people in the Discord chat to like, repost, and support your content.
+</p>
+
+        <div class="resource-card">
+  <h3>Ritual X</h3>
+  <p>
+    Follow Ritual on X to stay updated, share your content, and interact with other Ritualists.
+  </p>
+  <a href="https://x.com/ritualfnd" target="_blank" class="link-arrow">
+    Open Ritual X →
+  </a>
+</div>
+
+<div class="resource-card">
+  <h3>Ritual Cura</h3>
+  <p>
+    Use Cura to post threads, share deeper thoughts, art, and experiments around Ritual and AI + crypto.
+  </p>
+  <a href="https://cura.network/ritualfoundation" target="_blank" class="link-arrow">
+    Open Ritual Cura →
+  </a>
+</div>
+        <div class="resource-card">
+  <h3>Ritual Quests</h3>
+  <p>
+    Complete on-chain quests, earn points, and track your progress as you grow inside the Ritual ecosystem.
+  </p>
+  <a href="https://ritual-synful.domino.page/quests" target="_blank" class="link-arrow">
+    Open Ritual Quests →
+  </a>
+</div>
+
+<div class="resource-card">
+  <h3>Ritual Guild</h3>
+  <p>
+    Join the Ritual guild, unlock roles, and explore opportunities for node runners, builders, and active community members.
+  </p>
+  <a href="https://guild.xyz/ritual" target="_blank" class="link-arrow">
+    Open Ritual Guild →
+  </a>
+</div>
+
+    </section>
+</main>
+
+
+
+
+
+    <!-- Footer -->
+   <footer class="footer">
+  <div class="footer-columns">
+    <!-- левая колонка -->
+    <div class="footer-column">
+      <div class="footer-item">Official Ritual</div>
+
+      <a href="https://ritual.net" target="_blank" class="footer-item footer-link">
+        Ritual
+      </a>
+
+      <a href="https://x.com/ritualnet" target="_blank" class="footer-icon-link">
+        <img src="images/x.png" alt="Ritual X">
+      </a>
+      <a href="https://discord.com/invite/ritual-net" target="_blank" class="footer-icon-link">
+        <img src="images/ds.png" alt="Ritual Discord">
+      </a>
+      <a href="https://github.com/ritual-net" target="_blank" class="footer-icon-link">
+        <img src="images/git.png" alt="Ritual GitHub">
+      </a>
+    </div>
+
+    <!-- центр -->
+    <div class="footer-center">
+      © 2025 Quick Ritual Guide
+    </div>
+
+    <!-- правая колонка -->
+    <div class="footer-column">
+      <div class="footer-item">Autor Quick Ritual Guide</div>
+      <div class="footer-item">Discord: @tripppin666</div>
+
+      <a href="https://x.com/Maxim_Ilyano" target="_blank" class="footer-icon-link">
+        <img src="images/x.png" alt="Maxim on X">
+      </a>
+    </div>
+  </div>
+</footer>
+
+    <script>
+        // Smooth navigation
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+     
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+       
+
+        // Smooth scroll initialization
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+        function toggleNav() {
+  document.querySelector('.header-right nav').classList.toggle('active');
+}
+function toggleNav() {
+    const nav = document.querySelector("nav");
+    const btn = document.querySelector(".header-hamburger");
+    const isOpen = nav.classList.toggle("active");
+    btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  }
+
+  // закрывать меню при клике по ссылке
+  document.querySelectorAll("nav a").forEach(a => {
+    a.addEventListener("click", () => {
+      document.querySelector("nav").classList.remove("active");
+      document.querySelector(".header-hamburger")?.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // закрывать при клике вне меню
+  document.addEventListener("click", (e) => {
+    const nav = document.querySelector("nav");
+    const btn = document.querySelector(".header-hamburger");
+    if (!nav || !btn) return;
+    if (!nav.classList.contains("active")) return;
+    if (nav.contains(e.target) || btn.contains(e.target)) return;
+    nav.classList.remove("active");
+    btn.setAttribute("aria-expanded", "false");
+  });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritual - Onboarding Hub</title>
+    <style>
+        :root {
+    /* Текст и фон */
+    --bg-dark: #050713;          /* общий фон страницы */
+    --bg-card: #0b0f21;          /* карточки поверх фона */
+    --text-primary: #f5f1e8;     /* мягкий тёплый белый */
+    --text-secondary: #b5b0a5;   /* приглушённый серо-бежевый */
+    --border: #272b3f;
+
+    /* Акценты */
+    --primary: #f5c76a;          /* тёплый "свет свечи" для кнопок и заголовков */
+    --primary-dark: #c59a45;
+    --primary-light: #ffe2a3;
+
+    --accent: #7c5cff;           /* холодный фиолетовый акцент под фон */
+    --accent-light: #9d8bff;
+    --success: #5bb98a;
+
+    --gradient-1: linear-gradient(135deg, #f5c76a, #7c5cff);
+    --gradient-2: linear-gradient(135deg, #7c5cff, #f5c76a);
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            background-image: url('images/fon.png');
+    background-size: cover;        /* картинка растягивается на весь экран */
+    background-position: center;   /* центрируем фон */
+    background-attachment: fixed;  /* лёгкий эффект параллакса при скролле */
+}
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #000000;          /* тот же тёмный цвет, что и hero/section */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #000000;
+    z-index: 1000;
+    padding: 20px 0;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* три колонки одинаковой ширины */
+.header-left,
+.header-center,
+.header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* текст Ritual слева */
+.header-left {
+    justify-content: flex-start;
+}
+
+.brand-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;        /* убираем линию */
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0) 0%,
+        rgba(180,180,180,0.7) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    transform: skewX(-20deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.brand-text:hover::after {
+    opacity: 1;
+    animation: brandShimmer 0.6s forwards;
+}
+
+@keyframes brandShimmer {
+    from { left: -120%; }
+    to   { left: 120%; }
+}
+
+
+/* лого по центру */
+.header-center {
+    justify-content: center;
+}
+
+.header-logo {
+    height: 32px;      /* уменьшаешь/увеличиваешь по вкусу */
+    width: auto;
+    display: block;
+}
+
+/* навигация справа */
+.header-right {
+    justify-content: flex-end;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: var(--primary);
+}
+
+
+        nav a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 3px;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        /* Hero */
+       .hero {
+    padding: 60px 0;
+    text-align: center;
+    background: #080b18;              /* плотный тёмный блок */
+    border-radius: 24px;
+    margin-bottom: 80px;
+    border: 1px solid #272b3f;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+
+
+        .hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #ffffff;              /* просто белый текст */
+}
+
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+    display: inline-block;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #ffffff, #e5e5ff); /* мягкий светлый градиент */
+    color: #111217;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+       .cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.7) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    transform: skewX(-20deg);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+.cta-button:hover::after {
+    opacity: 1;
+    animation: shimmer 0.7s forwards;
+}
+
+@keyframes shimmer {
+    from { left: -120%; }
+    to   { left: 120%; }
+}
+
+        /* Sections */
+        .section {
+    margin-bottom: 100px;
+    background: #050713;              /* фон под контент */
+    border-radius: 24px;
+    padding: 40px 32px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+    border: 1px solid #272b3f;
+}
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Roles Grid */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .role-card,
+.info-box,
+.art-item,
+.asset-card {
+    background: #0b0f21;
+    border: 1px solid #323652;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+}
+
+
+        .role-card:hover {
+            border-color: #000000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .role-badge.ambassador {
+            background: #000000;
+            color: #fff;
+        }
+
+        .role-badge.developer {
+            background: #2a2a2a;
+            color: #fff;
+        }
+
+        .role-badge.researcher {
+            background: #404040;
+            color: #fff;
+        }
+
+        .role-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .role-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .role-requirements {
+            font-size: 12px;
+            color: var(--text-secondary);
+            background: #f0f0f0;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        /* Project Info */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .info-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            border-left: 4px solid #ffffff;
+        }
+
+        .info-box h4 {
+            color: #ffffff;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .info-box p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .features-list li {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .features-list li::before {
+            content: '→';
+            color: #000000;
+            font-weight: bold;
+        }
+
+        /* Asset Section */
+        .asset-showcase {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .asset-card,
+.role-requirements {
+    background-color: #101425;
+}
+
+        .asset-icon {
+            font-size: 48px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.12));
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .asset-info {
+            text-align: left;
+            flex: 1;
+        }
+
+        .asset-info h4 {
+            color: #000000;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .asset-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Art Section */
+        .art-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .art-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .art-item:hover {
+            border-color: #000000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .art-preview {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.08));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .art-info {
+            padding: 16px;
+        }
+
+        .art-info h4 {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .art-info p {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            margin-top: 100px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .asset-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .asset-info {
+                text-align: center;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+    <div class="container">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="index.html" class="brand-text">Ritual</a>
+            </div>
+
+            <div class="header-center">
+                <img src="images/logo.gif" alt="Ritual logo" class="header-logo">
+            </div>
+
+            <div class="header-right">
+    <button class="header-hamburger" type="button" aria-label="Open menu" aria-expanded="false" onclick="toggleNav()">
+  <span></span><span></span><span></span>
+</button>
+    <nav>
+        <a href="index.html" class="nav-link">Roles</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="assets.html" class="nav-link">Assets</a>
+        <a href="art.html" class="nav-link">Art</a>
+    </nav>
+</div>
+</header>
+
